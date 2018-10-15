@@ -1,0 +1,8 @@
+<h1>Success!</h1>
+
+<p>Your Stylist has been saved.</p>
+
+<a href="/stylists">View Stylist</a>
+#if ($client)
+<p>Your stylist has been saved to $client.getFirstName() $client.getLastName()</p>
+#end

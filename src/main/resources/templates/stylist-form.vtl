@@ -1,0 +1,29 @@
+<h5>Add a new Stylist</h5>
+
+<form action="/stylists" method="post">
+<label for="cliantId">Select a List</label>
+<select id='cliantId' name='cliantId'>
+    #foreach($cliant in $clients)
+
+        <option value="$cliant.getId()">$cliant.getFirstName()</option>
+#end
+</select>
+
+<div class="form-group">
+    <label for="firstName">FirstName</label>
+    <input id="firstName" name="firstName" type="text" placeholder="Enter FirstName">
+</div>
+<div class="form-group">
+    <label for="lastName">LastName</label>
+    <input id="lastName" name="lastName" type="text" placeholder="Enter LastName">
+</div>
+<div class="form-group">
+    <label for="email">Your Email</label>
+    <input id="email" name="email" type="email" placeholder="Enter email">
+</div>
+<div class="form-group">
+    <label for="phoneNumber">Telephone Number</label>
+    <input id="phoneNumber" name="phoneNumber" type="number" placeholder="phoneNumber">
+</div>
+<button type="submit" class="btn btn-primary">Submit</button>
+</form>

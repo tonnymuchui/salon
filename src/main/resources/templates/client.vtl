@@ -1,0 +1,15 @@
+<P>$client.getFirstName</P>
+<P>$client.getLastName</P>
+<P>$client.getEmail</P>
+<P>$client.getPhoneNumber</P>
+
+<ul>
+#foreach($stylist in $client.getmyStylist())
+<li>$stylist.getFirstName</li>
+<li>$stylist.getLastName</li>
+<li>$stylist.getEmail</li>
+<li>$stylist.getPhoneNumber</li>
+#end
+</ul>
+<a href="/clients/$client.getId()/stylists/new">Add new Stylist</a>
+<a href="/clients">View All clients</a>

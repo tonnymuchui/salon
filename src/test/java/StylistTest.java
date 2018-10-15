@@ -1,12 +1,31 @@
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import org.sql2o.Connection;
+import org.sql2o.Sql2o;
 
 import static org.junit.Assert.*;
 
 public class StylistTest {
 
+    @Before
+    public void setup(){
+        DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/salon_test", "tonny", "postgres22");
+    }
+
+    @After
+    public void tearDown() {
+        try (Connection con = DB.sql2o.open()) {
+            String deleteStylistQuery = "DELETE FROM stylists *;";
+            String deleteClientQuery= "DELETE FROM cliants *;";
+            con.createQuery(deleteStylistQuery).executeUpdate();
+            con.createQuery(deleteClientQuery).executeUpdate();
+        }
+    }
+
     @Test
     public void getFname(){
-        Stylist testStylist = new Stylist("Tony","muchui","email",072020202);
+        Stylist testStylist = new Stylist("Tony","muchui","email",072020202,);
 assertEquals("Tony",testStylist.getFirstName());
     }
     @Test
@@ -27,26 +46,46 @@ assertEquals(072020202, testStylist.getPhoneNumber());
     @Test
     public void all(){
         Stylist firstStylist = new Stylist("Tony","muchui","email",072020202);
+       firstStylist.save();
         Stylist secondStylist = new Stylist("Tony","muchui","email",072020202);
-assertTrue(Stylist.all().contains(firstStylist));
-assertTrue(Stylist.all().contains(secondStylist));
+        secondStylist.save();
+        assertEquals(true, Stylist.all().get(0).equals(firstStylist));
+        assertTrue(Stylist.all().get(1).equals(secondStylist));
     }
     @Test
-    public void clear(){
-        Stylist testStylist = new Stylist("Tony","muchui","email",072020202);
-Stylist.clear();
-        assertEquals(Stylist.all().size(),0);
+    public void equal(){
+        Stylist firstStylist = new Stylist("Tony","muchui","email",072020202);
+        Stylist secondStylist = new Stylist("Tony","muchui","email",072020202);
+        assertTrue(firstStylist.equals(secondStylist));
     }
+    @Test
+    public void save(){
+        Cliant secondCliant= new Cliant("tony","muchui","email", 0720);
+        secondCliant.save();
+        Stylist newStylist = new Stylist("Tony","muchui","email",072020202);
+        newStylist.save();
+        Stylist savedStylist = Stylist.find(newStylist.getId());
+        assertEquals(savedStylist.getCliantId(), secondCliant.getId());
+    }
+
+//    @Test
+//    public void clear(){
+//        Stylist testStylist = new Stylist("Tony","muchui","email",072020202);
+//Stylist.clear();
+//        assertEquals(Stylist.all().size(),0);
+//    }
     @Test
     public void getId(){
-        Stylist.clear();
         Stylist testStylist = new Stylist("Tony","muchui","email",072020202);
-assertEquals(1,testStylist.getId());
+        testStylist.save();
+        assertTrue(testStylist.getId() > 0);
     }
     @Test
     public void find(){
         Stylist firstStylist = new Stylist("Tony","muchui","email",072020202);
+        firstStylist.save();
         Stylist secondStylist = new Stylist("Tony","muchui","email",072020202);
-assertEquals(Stylist.find(secondStylist.getId()), secondStylist);
+        secondStylist.save();
+        assertEquals(Stylist.find(secondStylist.getId()), secondStylist);
     }
 }
