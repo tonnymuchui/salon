@@ -85,4 +85,24 @@ this.getCliantId() == newStylist.getCliantId();
 public int getCliantId(){
         return cliantId;
 }
+public void update(String firstName,String lastName,String email,int phoneNumber){
+        try(Connection con = DB.sql2o.open()){
+            String sql = "UPDATE stylists SET firstName = :firstName, lastName = :lastName, email = :email, phoneNumber = :phoneNumber WHERE id = :id";
+            con.createQuery(sql)
+             .addParameter("firstName", firstName)
+             .addParameter("lastName", lastName)
+             .addParameter("email", email)
+              .addParameter("phoneNumber", phoneNumber)
+              .addParameter("id", id)
+              .executeUpdate();
+        }
+}
+public void delete(){
+        try(Connection con= DB.sql2o.open()){
+            String sql = "DELETE FROM stylists WHERE id= :id;";
+            con.createQuery(sql)
+        .addParameter("id", id)
+        .executeUpdate();
+        }
+}
 }
