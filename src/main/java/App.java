@@ -88,25 +88,25 @@ model.put("template", "templates/client.vtl");
 return new ModelAndView(model, layout);
 },new VelocityTemplateEngine());
 
-//Post method for deleting client
-        post("/client/:id", (request, response) -> {
-            Map<String, Object> model = new HashMap<>();
-            Cliant client = Cliant.find(Integer.parseInt(request.params(":id")));
-            client.delete();
-            model.put("clients", client);
-            model.put("template", "templates/client.vtl");
-            return new ModelAndView(model, layout);
-        }, new VelocityTemplateEngine());
-
-        //Post Method to delete stylist
-        post("/clients/:id", (request, response) -> {
-            Map<String, Object> model = new HashMap<>();
-            Stylist stylist = Stylist.find(Integer.parseInt(request.params(":id")));
-            stylist.delete();
-            model.put("stylists", stylist);
-            model.put("template", "templates/clients.vtl");
-            return new ModelAndView(model, layout);
-        }, new VelocityTemplateEngine());
+////Post method for deleting client
+//        post("/client/:id", (request, response) -> {
+//            Map<String, Object> model = new HashMap<>();
+//            Cliant client = Cliant.find(Integer.parseInt(request.params(":id")));
+//            client.delete();
+//            model.put("clients", client);
+//            model.put("template", "templates/client.vtl");
+//            return new ModelAndView(model, layout);
+//        }, new VelocityTemplateEngine());
+//
+//        //Post Method to delete stylist
+//        post("/clients/:id", (request, response) -> {
+//            Map<String, Object> model = new HashMap<>();
+//            Stylist stylist = Stylist.find(Integer.parseInt(request.params(":id")));
+//            stylist.delete();
+//            model.put("stylists", stylist);
+//            model.put("template", "templates/clients.vtl");
+//            return new ModelAndView(model, layout);
+//        }, new VelocityTemplateEngine());
 
 //get("clients/:id/stylists/new", (request, response) -> {
 //    Map<String, Object> model = new HashMap<String, Object>();
