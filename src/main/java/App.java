@@ -52,15 +52,6 @@ public class App {
                 },new VelocityTemplateEngine());
 
 
-//        get("stylists", (request, response) -> {
-//            Map<String, Object> model = new HashMap<String, Object>();
-//        model.put("stylists", Stylist.all());
-//        model.put("template", "templates/stylists.vts");
-//        return new ModelAndView(model, layout);
-//        },new VelocityTemplateEngine());
-
-
-
 post("/client", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
             String firstName= request.queryParams("firstName");
