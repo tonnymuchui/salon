@@ -3,7 +3,9 @@ apply plugin: 'application'
 
 archivesBaseName = "salon"
 version = '1.0'
+applicationName = "salon"
 mainClassName = "App"
+
 
 repositories {
     mavenCentral()
@@ -15,3 +17,6 @@ dependencies {
     compile group: 'org.sql2o', name: 'sql2o', version: '1.5.4'
     compile group: 'org.postgresql', name: 'postgresql', version: "9.4-1201-jdbc41"
 }
+
+defaultTasks = ['clean']
+task stage(dependsOn: ['clean', 'installApp'])
