@@ -76,14 +76,6 @@ public void tearDown(){
 
 
 //    @Test
-//    public void find(){
-//        Cliant firstCliant= new Cliant("tony","muchui","email", 720);
-//        firstCliant.save();
-//        Cliant secondCliant= new Cliant("tony","muchui","email", 720);
-//        secondCliant.save();
-//        assertEquals(Cliant.find(secondCliant.getId()), secondCliant);
-//    }
-//    @Test
 //    public void getStylist(){
 //        Cliant firstCliant= new Cliant("tony","muchui","email", 720);
 //        firstCliant.save();

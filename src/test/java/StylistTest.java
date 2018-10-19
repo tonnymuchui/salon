@@ -39,7 +39,6 @@ public class StylistTest {
     public void save(){
         Stylist newStylist = new Stylist("Tony","muchui","email",072020202);
         newStylist.save();
-//        Stylist savedStylist = Stylist.find(newStylist.getId());
         assertEquals(newStylist.getFirstName(),"Tony");
     }
 
