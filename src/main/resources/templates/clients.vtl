@@ -5,14 +5,41 @@
         <div class="card-header">Stylists</div>
         <div class="card-body text-primary">
 
+            <h5> Current stylist:</h5>
             #if ($stylists)
             <ul>
                 #foreach ($stylist in $stylists)
-                <h5> Current stylist:</h5>
                 <li>$stylist.getFirstName()</li>
                 <li>$stylist.getLastName()</li>
                 <li>$stylist.getEmail()</li>
                 <li>+254$stylist.getPhoneNumber().</li>
+                <form action="/deleteStylist/$stylist.getId()" method="post">
+                <button type="submit" class="btn btn-primary btn-xl mb25">delete this stylist</button>
+                </form>
+                    <div class="card bg-light mb-3">
+                        <div class="card-header">Update Stylist</div>
+                        <div class="card-body">
+                            <form action="/updateStylist/$stylist.getId()" method="post">
+                                <div class="form-group">
+                                    <label for="firstName">FirstName</label>
+                                    <input id="firstName" name="firstName" type="text" placeholder="Enter FirstName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">LastName</label>
+                                    <input id="lastName" name="lastName" type="text" placeholder="Enter LastName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Your Email</label>
+                                    <input id="email" name="email" type="email" placeholder="Enter email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phoneNumber">Telephone Number</label>
+                                    <input id="phoneNumber" name="phoneNumber" type="number" placeholder="phoneNumber">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
                 #end
             </ul>
             #else
@@ -21,3 +48,56 @@
         </div>
     </div>
 </div>
+
+<!--<div class="row">-->
+
+
+<!--<div class="col-sm-6">-->
+    <!--<div class="card">-->
+        <!--<div class="card-body">-->
+            <!--#if ($stylists)-->
+            <!--<ul>-->
+                <!--#foreach ($stylist in $stylists)-->
+                <!--<li>$stylist.getFirstName()</li>-->
+            <!--<li>$stylist.getLastName()</li>-->
+            <!--<li>$stylist.getEmail()</li>-->
+            <!--<li>+254$stylist.getPhoneNumber().</li>-->
+            <!--<form action="/deleteStylist/$stylist.getId()" method="post">-->
+            <!--<button type="submit" class="btn btn-primary btn-xl mb25">delete this stylist</button>-->
+            <!--</form>-->
+    <!--#end-->
+            <!--</ul>-->
+    <!--#else-->
+    <!--<h1>No stylist</h1>-->
+    <!--#end-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="col-sm-6">-->
+    <!--<div class="card">-->
+        <!--<div class="card-body">-->
+            <!--#if ($stylists)-->
+            <!--<form action="/updateStylist/$stylists.getId()" method="post">-->
+                <!--<div class="form-group">-->
+                    <!--<label for="firstName">FirstName</label>-->
+                    <!--<input id="firstName" name="firstName" type="text" placeholder="Enter FirstName">-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+                    <!--<label for="lastName">LastName</label>-->
+                    <!--<input id="lastName" name="lastName" type="text" placeholder="Enter LastName">-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+                    <!--<label for="email">Your Email</label>-->
+                    <!--<input id="email" name="email" type="email" placeholder="Enter email">-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+                    <!--<label for="phoneNumber">Telephone Number</label>-->
+                    <!--<input id="phoneNumber" name="phoneNumber" type="number" placeholder="phoneNumber">-->
+                <!--</div>-->
+                <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+            <!--</form>-->
+            <!--#end-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--</div>-->

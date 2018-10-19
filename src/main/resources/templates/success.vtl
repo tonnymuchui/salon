@@ -2,7 +2,7 @@
 
 <p>Your Stylist has been saved.</p>
 
-<a href="/new">View Stylist</a>
-#if ($client)
-<p>Your stylist has been saved to $client.getFirstName() $client.getLastName()</p>
+<a href="/clients">View Stylist</a>
+#if ($clients)
+<p>Your stylist has been saved to $clients.getFirstName() $clients.getLastName()</p>
 #end
