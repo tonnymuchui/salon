@@ -10,13 +10,13 @@ public class Stylist {
     private int id;
     private int cliantId;
 
-    public Stylist(String firstName, String lastName, String email, int phoneNumber, int clientId) {
+    public Stylist(String firstName, String lastName, String email, int phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.cliantId=clientId;
     }
+
 
     public String getFirstName() {
         return firstName;
@@ -48,7 +48,7 @@ public class Stylist {
     }
 
     public static List<Stylist> all() {
-        String sql = "SELECT id, firstName, lastName, email, phoneNumber,cliantId FROM stylists";
+        String sql = "SELECT firstname, lastname, email, phonenumber FROM stylists ";
         try (Connection con = DB.sql2o.open()) {
             return con.createQuery(sql).executeAndFetch(Stylist.class);
         }
@@ -70,13 +70,12 @@ this.getCliantId() == newStylist.getCliantId();
     }
     public void save() {
         try(Connection con= DB.sql2o.open()){
-            String sql= "INSERT INTO stylists (id, firstName, LastName,email,phoneNumber,cliantId) VALUES ( :firstName, :lastName, :email, :phoneNumber,:cliantId)";
+            String sql= "INSERT INTO stylists (firstname, Lastname,email,phonenumber) VALUES (:firstName, :lastName, :email, :phoneNumber)";
            this.id= (int) con.createQuery(sql, true)
             .addParameter("firstName", this.firstName)
             .addParameter("lastName", this.lastName)
             .addParameter("email", this.email)
             .addParameter("phoneNumber", this.phoneNumber)
-           .addParameter("cliantId", this.cliantId)
             .executeUpdate()
            .getKey();
 
@@ -85,16 +84,17 @@ this.getCliantId() == newStylist.getCliantId();
 public int getCliantId(){
         return cliantId;
 }
-public void update(String firstName,String lastName,String email,int phoneNumber){
-        try(Connection con = DB.sql2o.open()){
-            String sql = "UPDATE stylists SET firstName = :firstName, lastName = :lastName, email = :email, phoneNumber = :phoneNumber WHERE id = :id";
-            con.createQuery(sql)
-             .addParameter("firstName", firstName)
-             .addParameter("lastName", lastName)
+
+public void update(String firstname,String lastname,String email,int phonenumber){
+        try(Connection con = DB.sql2otest.open()){
+            String sql = "UPDATE stylists SET firstname = :firstname, lastname = :lastname, email = :email, phonenumber = :phonenumber";
+           this.id=(int) con.createQuery(sql,true)
+             .addParameter("firstname", firstname)
+             .addParameter("lastname", lastname)
              .addParameter("email", email)
-              .addParameter("phoneNumber", phoneNumber)
-              .addParameter("id", id)
-              .executeUpdate();
+              .addParameter("phonenumber", phonenumber)
+              .executeUpdate()
+            .getKey();
         }
 }
 public void delete(){

@@ -2,6 +2,8 @@ import org.sql2o.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static spark.route.HttpMethod.get;
+
 public class Cliant {
     private  String firstName;
     private String lastName;
@@ -34,7 +36,7 @@ public class Cliant {
 
 
     public static List<Cliant> all(){
-        String sql = "SELECT id, firstName, lastName, email, phoneNumber FROM cliants";
+        String sql = "SELECT firstname, lastname, email, phonenumber FROM cliants";
         try(Connection con  = DB.sql2o.open()){
             return con.createQuery(sql).executeAndFetch(Cliant.class);
         }
@@ -54,24 +56,37 @@ public class Cliant {
     }
   public void save(){
         try(Connection con = DB.sql2o.open()){
-            String sql = "INSERT INTO cliants (firstName,lastName, email,phoneNumber VALUES (:firstName,:lastName,:email,:phoneNumber)";
-          this.id= (int)  con.createQuery(sql, true)
-            .addParameter("firstName", this.firstName)
+            String sql = "INSERT INTO cliants (firstname,lastname, email,phonenumber) VALUES (:firstName,:lastName,:email,:phoneNumber)";
+          this.id= (int)  con.createQuery(sql)
+             .addParameter("firstName", this.firstName)
             .addParameter("lastName", this.lastName)
             .addParameter("email", this.email)
             .addParameter("phoneNumber", this.phoneNumber)
             .executeUpdate()
-          .getKey();
+             .getKey();
+
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
         }
   }
     public static Cliant find(int id){
        try(Connection con = DB.sql2o.open()){
            String sql = "SELECT *FROM cliants WHERE id=:id";
+           System.out.println(sql);
            Cliant cliant= con.createQuery(sql)
            .addParameter("id", id)
            .executeAndFetchFirst(Cliant.class);
            return cliant;
        }
+    }
+    public void delete(){
+        try(Connection con= DB.sql2o.open()){
+            String sql = "DELETE FROM cliants WHERE id= :id;";
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
     }
 
     public List<Stylist> getmyStylist(){

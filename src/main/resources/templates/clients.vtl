@@ -1,11 +1,39 @@
-<h1>All Clients</h1>
 
-<ul>
-#foreach ($client in $clients)
-<li><a href="/clients/$client.getId()">$client.getFirstName()</a></li>
-<li><a href="/clients/$client.getId()">$client.getLastName()</a></li>
-<li><a href="/clients/$client.getId()">$client.getEmail()</a></li>
-<li><a href="/clients/$client.getId()">$client.getPhoneNumber()</a></li>
-#end
-</ul>
-<a href="/clients/new">Add new client</a>
+<a href="/new" class="btn btn-primary btn-xl">Add stylist</a>
+<hr>
+    <div class="card">
+        <div class="card-header">Stylists</div>
+        <div class="card-body text-primary">
+
+            #if ($stylists)
+            <ul>
+                #foreach ($stylist in $stylists)
+                <h5> Current stylist:</h5>
+                <li>$stylist.getFirstName()</li>
+                <li>$stylist.getLastName()</li>
+                <li>$stylist.getEmail()</li>
+                <li>+254$stylist.getPhoneNumber().</li>
+                #end
+            </ul>
+            #else
+            <h1>No stylist</h1>
+            #end
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+    <form action="/clients/:id" method="post">
+        <div class="form-group">
+            <label for="delete">Delete</label>
+            <input type="number" class="form-control" id="delete" name="delete" placeholder="Delete Stylist">
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Confirm</label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-xl">Submit</button>
+    </form>
+    <a href="/new" class="btn btn-primary btn-xl">Add Cliants</a>
+

@@ -1,3 +1,10 @@
+body{
+    background-image: url('/images/salon.jpg');
+    background-attachment: fixed;
+    color: white;
+
+}
 a {
-background_color: blue;
+    color: white;
+    
 }

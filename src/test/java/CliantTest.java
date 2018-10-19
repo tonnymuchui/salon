@@ -1,12 +1,10 @@
-import org.junit.After;
-import org.junit.Before;
+import org.junit.*;
 import org.sql2o.*;
-import org.junit.Test;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import static org.junit.Assert.*;
+
 
 public class CliantTest {
 
@@ -50,9 +48,9 @@ public void tearDown(){
         Cliant firstCliant= new Cliant("tony","muchui","email", 0720);
         firstCliant.save();
         Cliant secondCliant= new Cliant("tony","muchui","email", 0720);
-        firstCliant.save();
-        assertTrue(Cliant.all().get(0).equals(firstCliant));
-        assertTrue(Cliant.all().get(1).equals(secondCliant));
+        secondCliant.save();
+        assertEquals(Cliant.all().get(0),Cliant.all().get(1));
+
     }
     @Test
     public void  equals(){
@@ -68,28 +66,32 @@ public void tearDown(){
         assertEquals(newCliant.getId(), savedCliant.getId());
     }
     @Test
-    public void getId(){
-        Cliant firstCliant= new Cliant("tony","muchui","email", 0720);
-        firstCliant.save();
-        assertTrue(firstCliant.getId() > 0);
+    public void delete(){
+        Cliant firstStylist = new Cliant("Tony","muchui","email",072020202);
+        firstStylist.save();
+        int myStylistId = firstStylist.getId();
+        firstStylist.delete();
+        assertEquals(null, Stylist.find(myStylistId));
     }
-    @Test
-    public void find(){
-        Cliant firstCliant= new Cliant("tony","muchui","email", 0720);
-        firstCliant.save();
-        Cliant secondCliant= new Cliant("tony","muchui","email", 0720);
-        secondCliant.save();
-        assertEquals(Cliant.find(secondCliant.getId()),  secondCliant);
-    }
-    @Test
-    public void getStylist(){
-        Cliant firstCliant= new Cliant("tony","muchui","email", 0720);
-        firstCliant.save();
-        Stylist newStylist = new Stylist("Tony","muchui","email",072020202,firstCliant.getId());
-        newStylist.save();
-        Stylist secondStylist = new Stylist("Ton","muchu","emal",07202020,firstCliant.getId());
-       secondStylist.save();
-        Stylist[] stylists = new Stylist[] {newStylist, secondStylist};
-    assertTrue(firstCliant.getmyStylist().containsAll(Arrays.asList(stylists)));
-    }
+
+
+//    @Test
+//    public void find(){
+//        Cliant firstCliant= new Cliant("tony","muchui","email", 720);
+//        firstCliant.save();
+//        Cliant secondCliant= new Cliant("tony","muchui","email", 720);
+//        secondCliant.save();
+//        assertEquals(Cliant.find(secondCliant.getId()), secondCliant);
+//    }
+//    @Test
+//    public void getStylist(){
+//        Cliant firstCliant= new Cliant("tony","muchui","email", 720);
+//        firstCliant.save();
+//        Stylist firstStylist = new Stylist("Tony","muchui","email",72020202,firstCliant.getId());
+//        firstStylist.save();
+//        Stylist secondStylist = new Stylist("Ton","muchu","emal",7202020,firstCliant.getId());
+//       secondStylist.save();
+//        Stylist[] stylists = new Stylist[] {firstStylist, secondStylist};
+//    assertTrue(firstCliant.getmyStylist().containsAll(Arrays.asList(stylists)));
+//    }
 }

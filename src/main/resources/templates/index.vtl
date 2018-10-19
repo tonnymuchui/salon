@@ -1,5 +1,67 @@
 
-<h1>Welcome to Lux Hair Salon</h1>
+<h1>Welcome to Hair Salon</h1>
+<hr/>
+<div class="row">
+<div class="col-sm-6">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Add stylist</h5>
+            <form action="/clients" method="post">
+                <div class="form-group">
+                    <label for="firstName">FirstName</label>
+                    <input id="firstName" name="firstName" type="text" placeholder="Enter FirstName">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">LastName</label>
+                    <input id="lastName" name="lastName" type="text" placeholder="Enter LastName">
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input id="email" name="email" type="email" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="phoneNumber">Telephone Number</label>
+                    <input id="phoneNumber" name="phoneNumber" type="number" placeholder="phoneNumber">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <br/>
+            <br/>
+            <a href="/clients" class="btn btn-primary">check existing stylist</a>
+        </div>
+    </div>
+</div>
+<br/>
+<br/>
+<div class="col-sm-6">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Add client</h5>
+            <form action="/client" method="post">
+                <div class="form-group">
+                    <label for="firstName">FirstName</label>
+                    <input id="firstName" name="firstName" type="text" placeholder="Enter FirstName">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">LastName</label>
+                    <input id="lastName" name="lastName" type="text" placeholder="Enter LastName">
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input id="email" name="email" type="email" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="phoneNumber">Telephone Number</label>
+                    <input id="phoneNumber" name="phoneNumber" type="number" placeholder="phoneNumber">
+                <br/>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <br/>
+            <br/>
+            <a href="/clients" class="btn btn-primary btn-xl">Check clients</a>
+        </div>
+    </div>
+</div>
+</div>
+<br/>
 
-<a href="/stylists/new">Add new stlist</a>
-<a href="/stylists">View current stylist</a>

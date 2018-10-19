@@ -1,15 +1,30 @@
-<P>$client.getFirstName</P>
-<P>$client.getLastName</P>
-<P>$client.getEmail</P>
-<P>$client.getPhoneNumber</P>
 
-<ul>
-#foreach($stylist in $client.getmyStylist())
-<li>$stylist.getFirstName</li>
-<li>$stylist.getLastName</li>
-<li>$stylist.getEmail</li>
-<li>$stylist.getPhoneNumber</li>
-#end
-</ul>
-<a href="/clients/$client.getId()/stylists/new">Add new Stylist</a>
-<a href="/clients">View All clients</a>
+<!--#foreach($stylist in $client.getmyStylist())-->
+<!--<li>$stylist.getFirstName</li>-->
+<!--<li>$stylist.getLastName</li>-->
+<!--<li>$stylist.getEmail</li>-->
+<!--<li>$stylist.getPhoneNumber</li>-->
+<!--#end-->
+<!--</ul>-->
+<a href="/new" class="btn btn-primary btn-xl">Add Client</a>
+<br>
+<hr>
+<div class="card">
+    <div class="card-header">Current Clients</div>
+    <div class="card-body text-primary">
+        #if ($clients)
+        <ul>
+            #foreach ($client in $clients)
+            <h5> Current clients:</h5>
+            <li>$client.getFirstName()</li>
+            <li>$client.getLastName()</li>
+            <li>$client.getEmail()</li>
+            <li>+254$client.getPhoneNumber().</li>
+            #end
+        </ul>
+        #else
+        <h1>No stylist</h1>
+        #end
+    </div>
+</div>
+<div>
