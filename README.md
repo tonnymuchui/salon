@@ -32,6 +32,9 @@ Use intellij to run project.
 ## Built With
 
 * java
+* CREATE DATABASE salon;
+* CREATE TABLE stylists (id serial PRIMARY KEY,firstName text,lastName text,email varchar,phonenumber int)
+* CREATE TABLE clients (id serial PRIMARY KEY,firstName text,lastName text,email varchar,phonenumber int)
 
 ## Build & Deployment
 
